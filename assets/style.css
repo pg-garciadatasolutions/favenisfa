@@ -229,6 +229,9 @@ form.enviado .form-ok { display: block; }
 .card-curso .rodape-card { margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--linha); display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: .85rem; }
 .card-curso .rodape-card a.wa { position: relative; z-index: 2; color: var(--wa-escuro); font-weight: 700; display: inline-flex; gap: 5px; align-items: center; }
 .card-curso .rodape-card a.wa svg { width: 16px; height: 16px; }
+.card-curso .rodape-card .acoes { display: inline-flex; align-items: center; gap: 12px; flex: none; }
+.card-curso .rodape-card a.matricular { position: relative; z-index: 2; background: var(--verde); color: #fff; font-weight: 700; padding: .35em .8em; border-radius: 99px; }
+.card-curso .rodape-card a.matricular:hover { background: var(--verde-escuro); }
 
 /* Carrossel horizontal */
 .trilho { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, 1fr); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 18px; scrollbar-width: thin; }

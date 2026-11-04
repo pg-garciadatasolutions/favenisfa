@@ -233,7 +233,8 @@
       var msg = "Olá! Vim pelo site e tenho interesse na capacitação: " + c.t + " (" + c.h + ").";
       return '<article class="card-curso"><div class="area">Capacitação EAD</div><h3 style="margin-bottom:12px">' + esc(c.t) + '</h3>' +
         '<div class="tags"><span class="tag verde">' + ICO_REL + esc(c.h) + '</span><span class="tag">Certificado digital</span></div>' +
-        '<div class="rodape-card"><span>Matrícula pelo polo</span><a class="wa" target="_blank" rel="noopener" href="' + esc(linkWhats(msg)) + '">' + ICO_WA + 'Quero</a></div></article>';
+        '<div class="rodape-card"><span>Certificado FAVENI</span><span class="acoes"><a class="matricular" href="/inscricao/capacitacao/?curso=' + encodeURIComponent(c.t) + '">Matricular</a>' +
+        '<a class="wa" target="_blank" rel="noopener" href="' + esc(linkWhats(msg)) + '">' + ICO_WA + 'Quero</a></span></div></article>';
     }
 
     function render() {
