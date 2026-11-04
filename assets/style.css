@@ -507,3 +507,4 @@ form.enviado .form-ok { display: block; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+.card-curso .rodape-card b, .card-curso .rodape-card s { white-space: nowrap; }
