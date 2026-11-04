@@ -304,6 +304,15 @@
     return l.join("\n");
   }
 
+  // botão "Copiar chave" do PIX (aparece na etapa 4 e na tela final)
+  document.addEventListener("click", function (ev) {
+    var bt = ev.target.closest("[data-copiar]");
+    if (!bt) return;
+    var ok = function () { bt.textContent = "Chave copiada!"; setTimeout(function () { bt.textContent = "Copiar chave"; }, 2500); };
+    if (navigator.clipboard) navigator.clipboard.writeText(bt.getAttribute("data-copiar")).then(ok, function () { prompt("Copie a chave PIX:", bt.getAttribute("data-copiar")); });
+    else prompt("Copie a chave PIX:", bt.getAttribute("data-copiar"));
+  });
+
   form.addEventListener("submit", function (ev) {
     ev.preventDefault();
     if (!validarEtapa(etapas[atual])) return;
