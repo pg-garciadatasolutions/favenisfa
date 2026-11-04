@@ -137,12 +137,14 @@
 
     <fieldset class="etapa" data-etapa="4">
       <legend>Pagamento</legend>
-      <p class="sub">O polo confirma com você os valores e as parcelas no WhatsApp antes de gerar qualquer cobrança.</p>
+      <p class="sub">Boleto em até 20x ou cartão de crédito em até 12x sem juros. O primeiro vencimento é sempre
+        30 dias depois da inscrição, e o polo confirma os valores com você no WhatsApp antes de gerar qualquer cobrança.</p>
       <div class="grade-campos">
         <div class="campo "><label for="f-forma_pagamento">Como prefere pagar?</label>
       <select id="f-forma_pagamento" name="forma_pagamento" required><option value="">Selecione…</option><option>Boleto</option><option>Cartão de crédito</option></select><span class="erro">Escolha uma opção.</span></div>
-        <div class="campo "><label for="f-vencimento">Melhor dia para vencimento</label>
-      <select id="f-vencimento" name="vencimento" required><option value="">Selecione…</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo"><label for="f-parcelas">Em quantas vezes?</label>
+          <select id="f-parcelas" name="parcelas" required><option value="">Escolha antes a forma de pagamento</option></select>
+          <span class="erro">Escolha o número de parcelas.</span></div>
         <div class="campo "><label for="f-cupom">Cupom de desconto <small>(opcional)</small></label>
       <input id="f-cupom" name="cupom" type="text" placeholder="Se tiver"><span class="erro">Campo obrigatório.</span></div>
         <div class="campo "><label for="f-indicado_por">Alguém te indicou? <small>(opcional)</small></label>

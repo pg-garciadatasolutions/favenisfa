@@ -182,6 +182,24 @@
     blocoResp.hidden = !(d && idade(d) < 18);
   }
 
+  /* ---------- Parcelas: boleto até 20x, cartão até 12x sem juros ---------- */
+  var forma = $("[name=forma_pagamento]", form), parcelas = $("[name=parcelas]", form);
+  function atualizarParcelas() {
+    var max = forma.value === "Boleto" ? 20 : forma.value === "Cartão de crédito" ? 12 : 0;
+    var atual = parcelas.value, html = "";
+    if (!max) html = '<option value="">Escolha antes a forma de pagamento</option>';
+    else {
+      html = '<option value="">Selecione…</option>';
+      for (var n = 1; n <= max; n++) {
+        var texto = n === 1 ? "1x (à vista)" : n + "x" + (max === 12 ? " sem juros" : "");
+        html += '<option value="' + texto + '">' + texto + "</option>";
+      }
+    }
+    parcelas.innerHTML = html;
+    if ($('option[value="' + atual + '"]', parcelas)) parcelas.value = atual;
+  }
+  forma.addEventListener("change", atualizarParcelas);
+
   /* ---------- CEP ---------- */
   var cep = $("[name=cep]", form);
   cep.addEventListener("input", function () {
@@ -219,6 +237,7 @@
       var d = JSON.parse(bruto);
       Object.keys(d).forEach(function (k) {
         var el = $("[name=" + k + "]", form);
+        if (el === parcelas) atualizarParcelas(); // as opções dependem da forma de pagamento
         if (el && d[k] && el.type !== "checkbox") el.value = d[k];
       });
     } catch (e) { apagar(CHAVE_RASCUNHO); }
@@ -280,7 +299,7 @@
     GRUPOS.slice(1).forEach(function (g) {
       g[1].forEach(function (k) { if (d[k]) l.push(rotulo(k) + ": " + d[k]); });
     });
-    ["formacao_curso", "formacao_concluido", "formacao_ano", "formacao_instituicao", "forma_pagamento", "vencimento", "cupom", "indicado_por"]
+    ["formacao_curso", "formacao_concluido", "formacao_ano", "formacao_instituicao", "forma_pagamento", "parcelas", "cupom", "indicado_por"]
       .forEach(function (k) { if (d[k]) l.push(rotulo(k) + ": " + d[k]); });
     return l.join("\n");
   }
