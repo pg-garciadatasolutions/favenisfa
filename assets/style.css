@@ -63,6 +63,7 @@ p { margin: 0 0 1em; }
 .btn-wa:hover { background: #1fbe5b; color: #06341d; }
 .btn-contorno { border-color: currentColor; color: var(--verde); background: transparent; }
 .btn-contorno:hover { background: var(--verde-50); }
+.link-matricula { display: block; text-align: center; margin: 4px 0 14px; font-size: .9rem; font-weight: 600; color: var(--verde); text-decoration: underline; }
 .btn-claro { background: #fff; color: var(--verde-900); }
 .btn-claro:hover { color: var(--verde); }
 .btn-bloco { width: 100%; }
