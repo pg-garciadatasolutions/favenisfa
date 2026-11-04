@@ -162,7 +162,9 @@
     if (salvo) alvo = cursos.find(function (c) { return c.t === salvo; });
     if (pedido) {
       var p = semAcento(pedido).replace(/-/g, " ").trim();
-      alvo = cursos.find(function (c) { return c.s === pedido || semAcento(c.t) === p; }) || alvo;
+      var carga = new URLSearchParams(location.search).get("h");
+      var iguais = cursos.filter(function (c) { return c.s === pedido || semAcento(c.t) === p; });
+      alvo = iguais.find(function (c) { return c.h === carga; }) || iguais[0] || alvo;
       if (!alvo) { busca.value = pedido.replace(/-/g, " "); mostrarLista(); }
     }
     if (alvo) escolher(alvo);
