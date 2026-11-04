@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inscrição Segunda Graduação | FAVENI São Francisco de Assis/RS</title>
+<meta name="description" content="Formulário de inscrição do Polo FAVENI São Francisco de Assis/RS.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#067a4b">
+<meta property="og:title" content="Inscrição Segunda Graduação · FAVENI São Francisco de Assis">
+<meta property="og:description" content="Preencha sua inscrição em 4 passos. O polo confirma tudo com você no WhatsApp.">
+<meta property="og:image" content="https://www.favenisaofranciscodeassis.com.br/assets/og-favenisfa.jpg">
+<link rel="icon" href="/assets/favicon-64.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=20261104d">
+<link rel="stylesheet" href="/assets/inscricao.css?v=20261104d">
+<script>window.SITE={"whats": "5555999667533", "webhook": "https://script.google.com/macros/s/AKfycbzFrYUtZxErYMymW4QclTuskwi1Y2lqFexPEHsgpSUr24gt7wZSvq0X_4BsE8l1l560/exec"};</script>
+</head>
+<body class="pag-inscricao">
+
+<header class="ins-topo"><div class="ins-caixa">
+  <img src="/assets/logo-faveni.png" alt="FAVENI" width="150" height="45">
+  <span>Polo São Francisco de Assis/RS</span>
+</div></header>
+<main class="ins-caixa" id="conteudo">
+  <div class="ins-intro">
+    <span class="selo">Inscrição · Segunda Graduação</span>
+    <h1>Faça sua inscrição</h1>
+    <p>Preencha com calma: são 4 passos rápidos. Depois o polo confere tudo e te chama no WhatsApp para confirmar valores e enviar o primeiro boleto.</p>
+  </div>
+  <ol class="ins-passos" aria-label="Etapas">
+    <li class="ativo"><b>1</b><span>Curso</span></li><li><b>2</b><span>Dados pessoais</span></li>
+    <li><b>3</b><span>Contato e endereço</span></li><li><b>4</b><span>Pagamento</span></li>
+  </ol>
+  <form id="form-inscricao" novalidate data-nivel="Segunda Graduação" data-titulo="Segunda Graduação" data-cursos="/data/segunda.json">
+    <input type="hidden" name="tipo" value="inscricao">
+    <input type="hidden" name="nivel" value="Segunda Graduação">
+    <input type="text" name="site_url" class="pote" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <fieldset class="etapa ativa" data-etapa="1">
+      <legend>Escolha o curso</legend>
+      <div class="campo busca-curso"><label for="f-busca">Curso de Segunda Graduação</label>
+        <input id="f-busca" type="search" autocomplete="off" placeholder="Digite parte do nome. Ex.: psicopedagogia" aria-controls="lista-cursos">
+        <input type="hidden" name="curso" required>
+        <div class="curso-escolhido" hidden></div>
+        <ul id="lista-cursos" class="lista-cursos" role="listbox"></ul>
+        <span class="erro">Escolha um curso na lista.</span></div>
+      
+      <h3>Sua graduação</h3>
+      <p class="sub">Para a segunda graduação você precisa ter um curso superior (ou estar terminando).</p>
+      <input type="hidden" name="formacao_nivel" value="Graduação">
+      <div class="grade-campos">
+        <div class="campo largo"><label for="f-formacao_curso">Curso da graduação</label>
+      <input id="f-formacao_curso" name="formacao_curso" type="text" required placeholder="Ex.: Pedagogia" autocomplete="off"><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-formacao_concluido">Concluído?</label>
+      <select id="f-formacao_concluido" name="formacao_concluido" required><option value="">Selecione…</option><option>Sim</option><option>Não, estou cursando</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo "><label for="f-formacao_ano">Ano de conclusão</label>
+      <input id="f-formacao_ano" name="formacao_ano" type="text" required inputmode="numeric" maxlength="4" placeholder="Ex.: 2018" data-ano><span class="erro">Informe o ano com 4 dígitos.</span></div>
+        <div class="campo largo"><label for="f-formacao_instituicao">Instituição</label>
+      <input id="f-formacao_instituicao" name="formacao_instituicao" type="text" required placeholder="Nome da faculdade"><span class="erro">Campo obrigatório.</span></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="etapa" data-etapa="2">
+      <legend>Dados pessoais</legend>
+      <p class="sub">Escreva igual ao seu documento. Esses dados vão para o seu certificado.</p>
+      <div class="grade-campos">
+        <div class="campo largo"><label for="f-nome">Nome completo</label>
+      <input id="f-nome" name="nome" type="text" required autocomplete="name" placeholder="Seu nome completo"><span class="erro">Informe nome e sobrenome.</span></div>
+        <div class="campo "><label for="f-cpf">CPF</label>
+      <input id="f-cpf" name="cpf" type="text" required inputmode="numeric" placeholder="000.000.000-00" data-cpf><span class="erro">CPF inválido.</span></div>
+        <div class="campo "><label for="f-rg">RG</label>
+      <input id="f-rg" name="rg" type="text" required inputmode="numeric" placeholder="Número do RG"><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-nascimento">Data de nascimento</label>
+      <input id="f-nascimento" name="nascimento" type="text" required inputmode="numeric" placeholder="dd/mm/aaaa" data-data><span class="erro">Data inválida.</span></div>
+        <div class="campo "><label for="f-sexo">Sexo</label>
+      <select id="f-sexo" name="sexo" required><option value="">Selecione…</option><option>Feminino</option><option>Masculino</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo "><label for="f-estado_civil">Estado civil</label>
+      <select id="f-estado_civil" name="estado_civil" required><option value="">Selecione…</option><option>Solteiro(a)</option><option>Casado(a)</option><option>União estável</option><option>Divorciado(a)</option><option>Separado(a)</option><option>Viúvo(a)</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo "><label for="f-etnia">Cor/raça</label>
+      <select id="f-etnia" name="etnia" required><option value="">Selecione…</option><option>Branca</option><option>Preta</option><option>Parda</option><option>Amarela</option><option>Indígena</option><option>Prefiro não declarar</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo "><label for="f-nacionalidade">Nacionalidade</label>
+      <select id="f-nacionalidade" name="nacionalidade" required><option value="">Selecione…</option><option selected>Brasileira</option><option>Estrangeira</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo "><label for="f-cidade_nascimento">Cidade onde nasceu</label>
+      <input id="f-cidade_nascimento" name="cidade_nascimento" type="text" required placeholder="Ex.: São Francisco de Assis"><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-uf_nascimento">Estado onde nasceu</label>
+      <select id="f-uf_nascimento" name="uf_nascimento" required><option value="">Selecione…</option><option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option selected>RS</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo largo"><label for="f-nome_mae">Nome da mãe</label>
+      <input id="f-nome_mae" name="nome_mae" type="text" required placeholder="Nome completo da mãe"><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo largo"><label for="f-nome_pai">Nome do pai <small>(opcional)</small></label>
+      <input id="f-nome_pai" name="nome_pai" type="text" placeholder="Deixe em branco se não constar no documento"><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-necessidade_especial">Possui alguma necessidade especial?</label>
+      <select id="f-necessidade_especial" name="necessidade_especial" required><option value="">Selecione…</option><option selected>Não</option><option>Sim</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo largo se-necessidade"><label for="f-necessidade_qual">Qual?</label>
+      <input id="f-necessidade_qual" name="necessidade_qual" type="text" required placeholder="Conte qual é, para o polo te atender melhor"><span class="erro">Campo obrigatório.</span></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="etapa" data-etapa="3">
+      <legend>Contato e endereço</legend>
+      <div class="grade-campos">
+        <div class="campo "><label for="f-celular">WhatsApp</label>
+      <input id="f-celular" name="celular" type="tel" required inputmode="tel" autocomplete="tel" placeholder="(55) 99999-9999"><span class="erro">Informe o celular com DDD.</span></div>
+        <div class="campo "><label for="f-email">E-mail</label>
+      <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="seu@email.com"><small class="dica">O acesso ao portal do aluno chega neste e-mail.</small><span class="erro">E-mail inválido.</span></div>
+        <div class="campo "><label for="f-cep">CEP</label>
+      <input id="f-cep" name="cep" type="text" required inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" data-cep><small class="dica">Preenchemos o endereço pelo CEP.</small><span class="erro">CEP inválido.</span></div>
+        <div class="campo largo"><label for="f-endereco">Rua / logradouro</label>
+      <input id="f-endereco" name="endereco" type="text" required autocomplete="address-line1"><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-numero">Número</label>
+      <input id="f-numero" name="numero" type="text" required inputmode="numeric" placeholder="Ou S/N"><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-complemento">Complemento <small>(opcional)</small></label>
+      <input id="f-complemento" name="complemento" type="text" placeholder="Apto, bloco, casa…"><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-bairro">Bairro</label>
+      <input id="f-bairro" name="bairro" type="text" required ><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-cidade">Cidade</label>
+      <input id="f-cidade" name="cidade" type="text" required ><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-uf">Estado</label>
+      <select id="f-uf" name="uf" required><option value="">Selecione…</option><option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option selected>RS</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option></select><span class="erro">Escolha uma opção.</span></div>
+      </div>
+      <div class="bloco-responsavel" hidden>
+        <h3>Responsável legal</h3>
+        <p class="sub">Como você tem menos de 18 anos, precisamos dos dados de um responsável.</p>
+        <div class="grade-campos">
+          <div class="campo largo"><label for="f-resp_nome">Nome do responsável</label>
+      <input id="f-resp_nome" name="resp_nome" type="text" required ><span class="erro">Campo obrigatório.</span></div>
+          <div class="campo "><label for="f-resp_cpf">CPF do responsável</label>
+      <input id="f-resp_cpf" name="resp_cpf" type="text" required inputmode="numeric" placeholder="000.000.000-00" data-cpf><span class="erro">CPF inválido.</span></div>
+          <div class="campo "><label for="f-resp_parentesco">Parentesco</label>
+      <select id="f-resp_parentesco" name="resp_parentesco" required><option value="">Selecione…</option><option>Mãe</option><option>Pai</option><option>Avó/Avô</option><option>Tia/Tio</option><option>Outro</option></select><span class="erro">Escolha uma opção.</span></div>
+          <div class="campo "><label for="f-resp_celular">Celular do responsável</label>
+      <input id="f-resp_celular" name="resp_celular" type="tel" required inputmode="tel" placeholder="(55) 99999-9999"><span class="erro">Informe o celular com DDD.</span></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="etapa" data-etapa="4">
+      <legend>Pagamento</legend>
+      <p class="sub">O polo confirma com você os valores e as parcelas no WhatsApp antes de gerar qualquer cobrança.</p>
+      <div class="grade-campos">
+        <div class="campo "><label for="f-forma_pagamento">Como prefere pagar?</label>
+      <select id="f-forma_pagamento" name="forma_pagamento" required><option value="">Selecione…</option><option>Boleto</option><option>Cartão de crédito</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo "><label for="f-vencimento">Melhor dia para vencimento</label>
+      <select id="f-vencimento" name="vencimento" required><option value="">Selecione…</option><option>5</option><option>10</option><option>15</option><option>20</option><option>25</option></select><span class="erro">Escolha uma opção.</span></div>
+        <div class="campo "><label for="f-cupom">Cupom de desconto <small>(opcional)</small></label>
+      <input id="f-cupom" name="cupom" type="text" placeholder="Se tiver"><span class="erro">Campo obrigatório.</span></div>
+        <div class="campo "><label for="f-indicado_por">Alguém te indicou? <small>(opcional)</small></label>
+      <input id="f-indicado_por" name="indicado_por" type="text" placeholder="Nome de quem indicou"><span class="erro">Campo obrigatório.</span></div>
+      </div>
+      <h3>Confira seus dados</h3>
+      <div class="resumo"></div>
+      <label class="aceite"><input type="checkbox" name="aceite" value="Sim" required>
+        <span>Confirmo que os dados estão corretos e autorizo o Polo FAVENI São Francisco de Assis a usá-los para a minha matrícula, conforme a <a href="/politica-de-privacidade/" target="_blank">Política de Privacidade</a>.</span></label>
+      <span class="erro erro-aceite">Marque a confirmação para enviar.</span>
+    </fieldset>
+
+    <div class="ins-acoes">
+      <button type="button" class="btn btn-contorno" data-voltar hidden>Voltar</button>
+      <button type="button" class="btn btn-primario" data-avancar>Continuar</button>
+      <button type="submit" class="btn btn-primario" data-enviar hidden>Enviar inscrição</button>
+    </div>
+  </form>
+
+  <div class="ins-ok" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+    <h2>Inscrição enviada!</h2>
+    <p>Recebemos seus dados. Agora toque no botão abaixo para avisar o polo no WhatsApp: a gente confere tudo e te envia os próximos passos.</p>
+    <a class="btn btn-wa btn-bloco" data-wa-final href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> Avisar o polo no WhatsApp</a>
+  </div>
+  <p class="ins-ajuda">Ficou com dúvida? <a href="https://wa.me/5555999667533" target="_blank" rel="noopener">Chame o polo no WhatsApp (55) 99966-7533</a></p>
+</main>
+<script src="/assets/inscricao.js?v=20261104d" defer></script>
+</body>
+</html>
