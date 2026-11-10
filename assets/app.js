@@ -278,4 +278,135 @@
       .catch(function () { lista.innerHTML = '<div class="vazio">Não foi possível carregar a lista agora. <a data-whats href="#">Fale conosco no WhatsApp</a>.</div>'; });
   }
   $$("[data-catalogo]").forEach(iniciarCatalogo);
+
+  /* ---------- Busca geral (lupa do cabeçalho) ---------- */
+  (function () {
+    var caixa = $(".busca-geral");
+    if (!caixa) return;
+    var campo = $("input", caixa), lista = $(".busca-geral-lista", caixa), info = $(".busca-geral-info", caixa);
+    var filtros = $$(".busca-geral-filtros button", caixa);
+    var ROTULO = { P: "Pós", G: "Graduação", S: "2ª Graduação", L: "2ª Licenciatura", B: "Lic. Bacharéis", C: "Capacitação", X: "Página" };
+    var ORDEM = { G: 0, S: 1, L: 2, B: 3, P: 4, C: 5, X: 6 };
+    var dados = null, carregando = false, tipo = "", limite = 30, sel = -1, ultimoFoco = null;
+
+    function carregar() {
+      if (dados || carregando) return;
+      carregando = true;
+      info.textContent = "Carregando cursos…";
+      fetch("/data/busca.json?v=" + (CFG.v || "")).then(function (r) { return r.json(); }).then(function (j) {
+        dados = j.map(function (c) { return { t: c[0], u: c[1], k: c[2], i: c[3], n: normalizar(c[0]), x: normalizar(c[0] + " " + c[4]) }; });
+        render();
+      }).catch(function () {
+        carregando = false;
+        info.innerHTML = 'Não foi possível carregar a busca agora. <a href="' + esc(linkWhats("Olá! Quero informações sobre os cursos.")) + '" target="_blank" rel="noopener">Fale conosco no WhatsApp</a>.';
+      });
+    }
+    function destacar(c, termos) {
+      var t = c.t, n = c.n, marcas = [];
+      if (n.length !== t.length) return esc(t);
+      termos.forEach(function (q) { var p = n.indexOf(q); if (p !== -1) marcas.push([p, p + q.length]); });
+      marcas.sort(function (a, b) { return a[0] - b[0]; });
+      var out = "", pos = 0;
+      marcas.forEach(function (m) {
+        if (m[0] < pos) return;
+        out += esc(t.slice(pos, m[0])) + "<mark>" + esc(t.slice(m[0], m[1])) + "</mark>"; pos = m[1];
+      });
+      return out + esc(t.slice(pos));
+    }
+    function pontos(c, q, termos) {
+      var s = 0;
+      if (c.n === q) s += 100;
+      else if (c.n.indexOf(q) === 0) s += 60;
+      else if (c.n.indexOf(" " + q) !== -1) s += 40;
+      else if (c.n.indexOf(q) !== -1) s += 25;
+      termos.forEach(function (w) { if (c.n.indexOf(w) !== -1) s += 5; });
+      return s - ORDEM[c.k] * 0.5 - c.t.length / 200;
+    }
+    function render() {
+      if (!dados) return;
+      var q = normalizar(campo.value).trim().replace(/\s+/g, " ");
+      var termos = q.split(" ").filter(Boolean);
+      var achados = dados.filter(function (c) {
+        if (tipo && tipo.indexOf(c.k) === -1) return false;
+        if (!termos.length) return c.k !== "C" && c.k !== "X";
+        return termos.every(function (w) { return c.x.indexOf(w) !== -1; });
+      });
+      if (termos.length) {
+        achados = achados.map(function (c) { return [pontos(c, q, termos), c]; })
+          .sort(function (a, b) { return b[0] - a[0]; }).map(function (p) { return p[1]; });
+      } else {
+        achados = achados.map(function (c, i) { return [ORDEM[c.k] * 1e5 + i, c]; })
+          .sort(function (a, b) { return a[0] - b[0]; }).map(function (p) { return p[1]; });
+      }
+      sel = -1;
+      var total = achados.length;
+      if (!total) {
+        info.textContent = "";
+        lista.innerHTML = '<li class="busca-geral-vazio"><strong>Não encontramos “' + esc(campo.value.trim()) + '” no site</strong>' +
+          '<p>A FAVENI lança cursos novos com frequência. Pergunte para a gente que verificamos para você.</p>' +
+          '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + esc(linkWhats("Olá! Procurei no site um curso de \"" + campo.value.trim() + "\" e não encontrei. Vocês têm?")) + '">' + ICO_WA + ' Perguntar no WhatsApp</a></li>';
+        return;
+      }
+      info.textContent = termos.length ? (total === 1 ? "1 resultado" : total.toLocaleString("pt-BR") + " resultados")
+        : "Digite o nome do curso ou uma área: enfermagem, psicopedagogia, libras, gestão…";
+      lista.innerHTML = achados.slice(0, limite).map(function (c) {
+        var fora = /^https?:/.test(c.u) ? ' target="_blank" rel="noopener"' : "";
+        return '<li><a href="' + esc(c.u) + '"' + fora + '><span class="selo selo-' + c.k + '">' + ROTULO[c.k] + '</span>' +
+          '<span class="nome">' + destacar(c, termos) + '</span><span class="det">' + esc(c.i) + '</span></a></li>';
+      }).join("") + (total > limite ? '<li class="busca-geral-mais"><button type="button">Mostrar mais resultados (' + (total - limite).toLocaleString("pt-BR") + ')</button></li>' : "");
+    }
+    function marcar(i) {
+      var itens = $$("li > a", lista);
+      if (!itens.length) return;
+      sel = (i + itens.length) % itens.length;
+      itens.forEach(function (a, k) { a.classList.toggle("sel", k === sel); });
+      itens[sel].scrollIntoView({ block: "nearest" });
+    }
+    function abrir() {
+      ultimoFoco = document.activeElement;
+      fecharMenu(); fecharModais();
+      caixa.hidden = false;
+      document.body.style.overflow = "hidden";
+      setTimeout(function () { campo.focus(); }, 30);
+      carregar(); render();
+    }
+    function fechar() {
+      if (caixa.hidden) return;
+      caixa.hidden = true;
+      document.body.style.overflow = "";
+      ultimoFoco && ultimoFoco.focus && ultimoFoco.focus({ preventScroll: true });
+    }
+    $$("[data-abrir-busca]").forEach(function (b) { b.addEventListener("click", abrir); });
+    $$("[data-fechar-busca]", caixa).forEach(function (b) { b.addEventListener("click", fechar); });
+    caixa.addEventListener("click", function (e) {
+      if (e.target === caixa) fechar();
+      var mais = e.target.closest(".busca-geral-mais button");
+      if (mais) { limite += 40; render(); }
+    });
+    filtros.forEach(function (f) {
+      f.addEventListener("click", function () {
+        tipo = f.getAttribute("data-tipo"); limite = 30;
+        filtros.forEach(function (x) { x.classList.toggle("ativo", x === f); });
+        render(); campo.focus();
+      });
+    });
+    var t;
+    campo.addEventListener("input", function () {
+      clearTimeout(t);
+      t = setTimeout(function () { limite = 30; render(); }, 120);
+    });
+    campo.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown") { e.preventDefault(); marcar(sel + 1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); marcar(sel - 1); }
+      else if (e.key === "Enter") {
+        var a = $$("li > a", lista)[sel < 0 ? 0 : sel];
+        if (a && campo.value.trim()) { e.preventDefault(); a.click(); }
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") fechar();
+      var dig = e.target.closest && e.target.closest("input, textarea, select, [contenteditable]");
+      if (!dig && caixa.hidden && (e.key === "/" || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k"))) { e.preventDefault(); abrir(); }
+    });
+  })();
 })();
